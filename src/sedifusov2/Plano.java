@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * @author carlos
  */
 public class Plano extends JPanel{
-
+    private boolean isSalida;
     int c1=0;
     int c2=0;
     int c3=0;
@@ -30,6 +30,10 @@ public class Plano extends JPanel{
         repaint();
     }
 
+    public void setIsSalida(boolean isSalida){
+        this.isSalida=isSalida;
+    }
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.                
@@ -63,11 +67,19 @@ public class Plano extends JPanel{
     }
     
     private void drawCorte(Graphics2D g2d){
-        g2d.setColor(new Color((int)(Math.random()*254)));
-        g2d.drawLine(100, 260-c1, 40*4+100, 260-c1);//NA
-        g2d.drawLine(35*4+100, 260-c2, 600, 260-c2);//CA
-        g2d.drawLine(65*4+100, 260-c3, 600, 260-c3);//A
-        g2d.drawLine(70*4+100, 260-c4, 600, 260-c4);//AE
+        if(isSalida){
+            g2d.setColor(new Color(0x0000FF));
+            g2d.setStroke(new BasicStroke(1.0f));
+            g2d.drawLine(100, 260-c1, 600, 260-c1);//NA
+            g2d.drawLine(100, 260-c2, 600, 260-c2);//CA
+            g2d.drawLine(100, 260-c3, 600, 260-c3);//A
+            g2d.drawLine(100, 260-c4, 600, 260-c4);//AE                                    
+            g2d.setColor(Color.BLACK);
+            //g2d.setStroke(new BasicStroke(1.5f));
+            //int[] intArray = Arrays.stream(puntosCorteX).mapToInt(Integer::intValue).toArray();
+            //int[] intArray2 = Arrays.stream(puntosCorteY).mapToInt(Integer::intValue).toArray();
+            //g2d.drawPolygon (intArray, intArray2, puntosCorteX.length);
+        }
     }
     
     private void setEjes(Graphics2D g2d){
