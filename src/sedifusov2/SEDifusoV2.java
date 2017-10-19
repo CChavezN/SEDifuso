@@ -467,7 +467,7 @@ public class SEDifusoV2 extends JFrame{
         difusificar();
         getPuntosDeCorte();
         desdifusificar();
-        /*for (int i = 0; i < reglas.size(); i++) {
+        for (int i = 0; i < reglas.size(); i++) {
             String txtRegla="IF ";
             Regla r = reglas.get(i);
             ArrayList<Premisa> antecedentes = r.getAntecedentes();
@@ -479,7 +479,7 @@ public class SEDifusoV2 extends JFrame{
             txtRegla+=" -> "+r.getConsecuenteName();
             System.out.println(""+txtRegla); 
             System.out.println("Pesor R"+i+": "+r.getPeso());
-        }*/
+        }
         
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
@@ -648,6 +648,8 @@ public class SEDifusoV2 extends JFrame{
     public void getPuntosDeCorte(){
         for (int i = 0; i < reglas.size(); i++) {
             Regla regla = reglas.get(i);
+            System.out.println(""+regla.getConsecuenteName());
+            System.out.println(""+regla.getPeso());
             switch(regla.getConsecuenteName()){
                 case "NOAPRUEBA":
                     if(regla.getPeso()>corteNA)
@@ -692,8 +694,7 @@ public class SEDifusoV2 extends JFrame{
            
            divisor += (vMembresia*i);
            dividendo += vMembresia;
-           System.out.println("It -> "+i+"Divisor NA="+divisor); 
-           System.out.println("Dividendo NA="+dividendo); 
+           
         }
         
         for (int i = 0; i < 100; i++) {
@@ -706,8 +707,7 @@ public class SEDifusoV2 extends JFrame{
            
            divisor += (vMembresia*i);
            dividendo += vMembresia;
-           System.out.println("It -> "+i+"Divisor CA="+divisor); 
-            System.out.println("Dividendo CA="+dividendo);
+           
             
         }
         
@@ -719,8 +719,7 @@ public class SEDifusoV2 extends JFrame{
             
            divisor += (vMembresia*i);
            dividendo += vMembresia;
-           System.out.println("It -> "+i+"Divisor A="+divisor); 
-           System.out.println("Dividendo A="+dividendo);
+           
         }
                 
         for (int i = 0; i < 100; i++) {
@@ -730,67 +729,11 @@ public class SEDifusoV2 extends JFrame{
            }
            divisor += (vMembresia*i);
            dividendo += vMembresia;
-           System.out.println("It -> "+i+"Divisor AE="+divisor); 
-            System.out.println("Dividendo AE="+dividendo);
+           
         }
         System.out.println(""+divisor+"/"+dividendo);
         JOptionPane.showMessageDialog(this, "Resultado:"+(divisor/dividendo));
     }
-    
-    /*private void desdifusificar(){        
-        float vMembresia;
-        float dividendo = 0;
-        float divisor = 0;
-        
-        for (int i = 0; i < 45; i++) {
-           vMembresia=aprobacionNoAprueba.getMembresiaX(i);
-           if(vMembresia>corteNA){
-               vMembresia=corteNA;
-           }
-           if(vMembresia==aprobacionCasiAprueba.getMembresiaX(i)){
-               break;
-           }
-           divisor += (vMembresia*i);
-           dividendo += vMembresia;
-            
-        }
-        
-        for (int i = 36; i < 70; i++) {
-           vMembresia=aprobacionCasiAprueba.getMembresiaX(i);
-           if(vMembresia>corteCA){
-               vMembresia=corteCA;
-           }
-           if(vMembresia==aprobacionAprueba.getMembresiaX(i)){
-               break;
-           }
-           divisor += (vMembresia*i);
-           dividendo += vMembresia;
-            
-        }
-        
-        for (int i = 66; i < 80; i++) {
-           vMembresia=aprobacionAprueba.getMembresiaX(i);
-           if(vMembresia>corteA){
-               vMembresia=corteA;
-           }
-           if(vMembresia==aprobacionApruebaExcelente.getMembresiaX(i)){
-               break;
-           }   
-           divisor += (vMembresia*i);
-           dividendo += vMembresia;
-        }
-        
-        System.out.println(""+divisor+"/"+dividendo);
-        JOptionPane.showMessageDialog(this, "Resultado:"+(divisor/dividendo));
-        for (int i = 75; i < 100; i++) {
-            vMembresia=aprobacionApruebaExcelente.getMembresiaX(i);
-           if(vMembresia>corteAE){
-               vMembresia=corteAE;
-           }
-           divisor += (vMembresia*i);
-           dividendo += vMembresia;
-        }
-    }*/
     
     
     
