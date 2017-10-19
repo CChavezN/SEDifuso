@@ -37,10 +37,10 @@ public class SEDifusoV2 extends JFrame{
     private VariableDifusa proyecto;
     private VariableDifusa aprobacion;
     
-    private float corteNA;
-    private float corteCA;
-    private float corteA;
-    private float corteAE;
+    private float corteNA=0;
+    private float corteCA=0;
+    private float corteA=0;
+    private float corteAE=0;
     
     Funcion aprobacionNoAprueba;
     Funcion aprobacionCasiAprueba;
@@ -465,7 +465,7 @@ public class SEDifusoV2 extends JFrame{
         difusificar();
         getPuntosDeCorte();
         desdifusificar();
-        for (int i = 0; i < reglas.size(); i++) {
+        /*for (int i = 0; i < reglas.size(); i++) {
             String txtRegla="IF ";
             Regla r = reglas.get(i);
             ArrayList<Premisa> antecedentes = r.getAntecedentes();
@@ -477,7 +477,7 @@ public class SEDifusoV2 extends JFrame{
             txtRegla+=" -> "+r.getConsecuenteName();
             System.out.println(""+txtRegla); 
             System.out.println("Pesor R"+i+": "+r.getPeso());
-        }
+        }*/
         
         
         revalidate();
@@ -652,7 +652,7 @@ public class SEDifusoV2 extends JFrame{
                     if(regla.getPeso()>corteA)
                         corteA = regla.getPeso();
                     break;
-                case "APRUEBAEXELENTE":
+                case "APRUEBAEXCELENTE":
                     if(regla.getPeso()>corteAE)
                         corteAE = regla.getPeso();
                     break;
@@ -666,10 +666,69 @@ public class SEDifusoV2 extends JFrame{
         graficaAprobacion.c2=(int)((corteCA*10)*20);
         graficaAprobacion.c3=(int)((corteA*10)*20);
         graficaAprobacion.c4=(int)((corteAE*10)*20);
+        graficaAprobacion.setIsSalida(true);
         jIAprobacion.setVisible(true);
     }
     
     private void desdifusificar(){        
+        float vMembresia=0;
+        float dividendo = 0;
+        float divisor = 0;
+        
+        for (int i = 0; i < 100; i++) {
+           vMembresia=aprobacionNoAprueba.getMembresiaX(i);
+           if(vMembresia>corteNA){
+               vMembresia=corteNA;
+           }
+           
+           divisor += (vMembresia*i);
+           dividendo += vMembresia;
+           System.out.println("It -> "+i+"Divisor NA="+divisor); 
+           System.out.println("Dividendo NA="+dividendo); 
+        }
+        
+        for (int i = 0; i < 100; i++) {
+           vMembresia=aprobacionCasiAprueba.getMembresiaX(i);
+           if(vMembresia>corteCA){
+               vMembresia=corteCA;
+           }
+           
+           
+           
+           divisor += (vMembresia*i);
+           dividendo += vMembresia;
+           System.out.println("It -> "+i+"Divisor CA="+divisor); 
+            System.out.println("Dividendo CA="+dividendo);
+            
+        }
+        
+        for (int i = 0; i < 100; i++) {
+           vMembresia=aprobacionAprueba.getMembresiaX(i);
+           if(vMembresia>corteA){
+               vMembresia=corteA;
+           }
+            
+           divisor += (vMembresia*i);
+           dividendo += vMembresia;
+           System.out.println("It -> "+i+"Divisor A="+divisor); 
+           System.out.println("Dividendo A="+dividendo);
+        }
+                
+        for (int i = 0; i < 100; i++) {
+            vMembresia=aprobacionApruebaExcelente.getMembresiaX(i);
+           if(vMembresia>corteAE){
+               vMembresia=corteAE;
+           }
+           divisor += (vMembresia*i);
+           dividendo += vMembresia;
+           System.out.println("It -> "+i+"Divisor AE="+divisor); 
+            System.out.println("Dividendo AE="+dividendo);
+        }
+        System.out.println(""+divisor+"/"+dividendo);
+        JOptionPane.showMessageDialog(this, "Resultado:"+(divisor/dividendo));
+    }
+    
+    /*private void desdifusificar(){        
         float vMembresia;
         float dividendo = 0;
         float divisor = 0;
@@ -722,7 +781,7 @@ public class SEDifusoV2 extends JFrame{
            divisor += (vMembresia*i);
            dividendo += vMembresia;
         }
-    }
+    }*/
     
     
     
