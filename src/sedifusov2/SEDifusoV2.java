@@ -176,7 +176,7 @@ public class SEDifusoV2 extends JFrame{
         entusiasmo = new VariableDifusa("ENTUSIASMO", new Funcion[]{
             entusiasmoNada,entusiasmoPoco,entusiasmoMedio,entusiasmoSuficiente,entusiasmoMucho
         });        
-        variablesDifusas.add(entusiasmo);
+        //variablesDifusas.add(entusiasmo);
         //___________________________________
         //_________ NOTAS _____________
         Plano graficaNotas = new Plano();
@@ -247,7 +247,7 @@ public class SEDifusoV2 extends JFrame{
         
         notas = new VariableDifusa("NOTAS", new Funcion[]{notasMalas,
             notasRegulares,notasBuenas});
-        variablesDifusas.add(notas);
+        //variablesDifusas.add(notas);
         //___________________________________________________________________________
         //_________ EXAMEN ______________________
         Plano graficaExamen = new Plano();
@@ -319,7 +319,7 @@ public class SEDifusoV2 extends JFrame{
         
         examen = new VariableDifusa("EXAMEN", new Funcion[]{examenMalo,
             examenRegular,examenBueno});
-        variablesDifusas.add(examen);
+        //variablesDifusas.add(examen);
         //__________________________________________
         //________ PROYECTO ________________________
         Plano graficaProyecto = new Plano();
@@ -373,7 +373,7 @@ public class SEDifusoV2 extends JFrame{
         proyecto = new VariableDifusa("PROYECTO", new Funcion[]{
             proyectoNoFuncional,proyectoFucional
         });
-        variablesDifusas.add(proyecto);
+        //variablesDifusas.add(proyecto);
         //__________________________________________
         //_____________ APROBACION _________________
         graficaAprobacion = new Plano();
@@ -461,6 +461,11 @@ public class SEDifusoV2 extends JFrame{
         aprobacion = new VariableDifusa("APROBACION", new Funcion[]{
             aprobacionNoAprueba,aprobacionCasiAprueba,aprobacionAprueba,aprobacionApruebaExcelente
         });
+        
+        variablesDifusas.add(proyecto);
+        variablesDifusas.add(examen);
+        variablesDifusas.add(notas);
+        variablesDifusas.add(entusiasmo);
         //____________________________________________Comienza la inferencia
         llenar_indice();
         generarReglas(1,2);
@@ -647,9 +652,7 @@ public class SEDifusoV2 extends JFrame{
     
     public void getPuntosDeCorte(){
         for (int i = 0; i < reglas.size(); i++) {
-            Regla regla = reglas.get(i);
-            System.out.println(""+regla.getConsecuenteName());
-            System.out.println(""+regla.getPeso());
+            Regla regla = reglas.get(i);            
             switch(regla.getConsecuenteName()){
                 case "NOAPRUEBA":
                     if(regla.getPeso()>corteNA)
