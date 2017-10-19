@@ -56,24 +56,112 @@ public class SEDifusoV2 extends JFrame{
         
         //Comienza dibujando los subconjuntos
         
+//DESDE AQUI MODIFIQUE
+        Archivos a = new Archivos();
+        ArrayList <Integer> numeros = new ArrayList();
         //_________ ENTUSIASMO ____________
-        Funcion entusiasmoNada = new FuncionTrapecio("NADA", -999, 0, 10, 20);
-        Funcion entusiasmoPoco = new FuncionTriangulo("POCO", 15, 25, 35);
-        Funcion entusiasmoMedio = new FuncionTriangulo("MEDIO", 30, 40, 50);
-        Funcion entusiasmoSuficiente = new FuncionTriangulo("SUFICIENTE", 50, 60, 80);
-        Funcion entusiasmoMucho = new FuncionTrapecio("MUCHO", 70, 85, 100, 999);
-        
         Plano graficaEntusiasmo = new Plano();
-            graficaEntusiasmo.addFigura("NADA",new Integer[]{0,0,10,20});
-            graficaEntusiasmo.addFigura("POCO",new Integer[]{15,25,35});
-            graficaEntusiasmo.addFigura("MEDIO",new Integer[]{30,40,50});
-            graficaEntusiasmo.addFigura("SUFICIENTE",new Integer[]{45,60,75});
-            graficaEntusiasmo.addFigura("MUCHO",new Integer[]{70,85,100,100});
+        
+        try {
+            numeros = a.obtenerDatos("Entusiasmo","NADA");
+        } catch(Exception e){}
+        Funcion entusiasmoNada;
+        if(numeros.get(0)==0){
+            entusiasmoNada = new FuncionTriangulo("NADA", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaEntusiasmo.addFigura("NADA",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            entusiasmoNada = new FuncionTrapecio("NADA", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaEntusiasmo.addFigura("NADA",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaEntusiasmo.addFigura("NADA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaEntusiasmo.addFigura("NADA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Entusiasmo","POCO");
+        } catch(Exception e){}
+        Funcion entusiasmoPoco;
+        if(numeros.get(0)==0){
+            entusiasmoPoco = new FuncionTriangulo("POCO", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaEntusiasmo.addFigura("POCO",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            entusiasmoPoco = new FuncionTrapecio("POCO", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaEntusiasmo.addFigura("POCO",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaEntusiasmo.addFigura("POCO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaEntusiasmo.addFigura("POCO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Entusiasmo","MEDIO");
+        } catch(Exception e){}
+        Funcion entusiasmoMedio;
+        if(numeros.get(0)==0){
+            entusiasmoMedio = new FuncionTriangulo("MEDIO", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaEntusiasmo.addFigura("MEDIO",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            entusiasmoMedio = new FuncionTrapecio("MEDIO", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaEntusiasmo.addFigura("MEDIO",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaEntusiasmo.addFigura("MEDIO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaEntusiasmo.addFigura("MEDIO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Entusiasmo","SUFICIENTE");
+        } catch(Exception e){}
+        Funcion entusiasmoSuficiente;
+        if(numeros.get(0)==0){
+            entusiasmoSuficiente = new FuncionTriangulo("SUFICIENTE", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaEntusiasmo.addFigura("SUFICIENTE",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            entusiasmoSuficiente = new FuncionTrapecio("SUFICIENTE", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaEntusiasmo.addFigura("SUFICIENTE",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaEntusiasmo.addFigura("SUFICIENTE",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaEntusiasmo.addFigura("SUFICIENTE",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Entusiasmo","MUCHO");
+        } catch(Exception e){}
+        Funcion entusiasmoMucho;
+        if(numeros.get(0)==0){
+            entusiasmoMucho = new FuncionTriangulo("MUCHO", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaEntusiasmo.addFigura("MUCHO",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            entusiasmoMucho = new FuncionTrapecio("MUCHO", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaEntusiasmo.addFigura("MUCHO",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaEntusiasmo.addFigura("MUCHO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaEntusiasmo.addFigura("MUCHO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
             graficaEntusiasmo.setPreferredSize(new Dimension(540, 280));
             //Cortes
             
             
-        JInternalFrame jIentusiasmo = new JInternalFrame("Entusiamos", true, false,false,true);
+        JInternalFrame jIentusiasmo = new JInternalFrame("Entusiasmo", true, false,false,true);
             jIentusiasmo.add(graficaEntusiasmo);
             //jIentusiasmo.setIconifiable(true);
             jIentusiasmo.setLocation(0, 0);
@@ -87,15 +175,65 @@ public class SEDifusoV2 extends JFrame{
         variablesDifusas.add(entusiasmo);
         //___________________________________
         //_________ NOTAS _____________
-        Funcion notasMalas = new FuncionTrapecio("MALAS", -999, 0, 20, 35);
-        Funcion notasRegulares = new FuncionTriangulo("REGULARES", 30, 50, 65);
-        Funcion notasBuenas = new FuncionTrapecio("BUENAS", 60, 70, 100, 999);
-        
         Plano graficaNotas = new Plano();
-            graficaNotas.addFigura("MALAS",new Integer[]{0,0,20,35});
-            graficaNotas.addFigura("REGULARES",new Integer[]{30,50,65});
-            graficaNotas.addFigura("BUENAS",new Integer[]{60,70,100,100});            
-            graficaNotas.setPreferredSize(new Dimension(540, 280));
+        try {
+            numeros = a.obtenerDatos("Notas","MALAS");
+        } catch(Exception e){}
+        Funcion notasMalas;
+        if(numeros.get(0)==0){
+            notasMalas = new FuncionTriangulo("MALAS", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaNotas.addFigura("MALAS",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            notasMalas = new FuncionTrapecio("MALAS", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaNotas.addFigura("MALAS",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaNotas.addFigura("MALAS",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaNotas.addFigura("MALAS",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Notas","REGULARES");
+        } catch(Exception e){}
+        Funcion notasRegulares;
+        if(numeros.get(0)==0){
+            notasRegulares = new FuncionTriangulo("REGULARES", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaNotas.addFigura("REGULARES",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            notasRegulares = new FuncionTrapecio("REGULARES", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaNotas.addFigura("REGULARES",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaNotas.addFigura("REGULARES",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaNotas.addFigura("REGULARES",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Notas","BUENAS");
+        } catch(Exception e){}
+        Funcion notasBuenas;
+        if(numeros.get(0)==0){
+            notasBuenas = new FuncionTriangulo("BUENAS", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaNotas.addFigura("BUENAS",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            notasBuenas = new FuncionTrapecio("BUENAS", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaNotas.addFigura("BUENAS",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaNotas.addFigura("BUENAS",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaNotas.addFigura("BUENAS",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        graficaNotas.setPreferredSize(new Dimension(540, 280));
         JInternalFrame jINotas = new JInternalFrame("Notas", true, false,false,true);
             jINotas.add(graficaNotas);
             jINotas.setLocation(540, 0);
@@ -108,14 +246,65 @@ public class SEDifusoV2 extends JFrame{
         variablesDifusas.add(notas);
         //___________________________________________________________________________
         //_________ EXAMEN ______________________
-        Funcion examenMalo = new FuncionTrapecio("MALO", -999, 0, 25, 35);
-        Funcion examenRegular = new FuncionTriangulo("REGULAR", 25, 50, 70);
-        Funcion examenBueno = new FuncionTrapecio("BUENO", 65, 85, 100, 999);
-        
         Plano graficaExamen = new Plano();
-            graficaExamen.addFigura("MALO",new Integer[]{0,0,20,35});
-            graficaExamen.addFigura("REGULAR",new Integer[]{25,50,70});
-            graficaExamen.addFigura("BUENO",new Integer[]{65,85,100,100});            
+        
+        try {
+            numeros = a.obtenerDatos("Examen","MALO");
+        } catch(Exception e){}
+        Funcion examenMalo;
+        if(numeros.get(0)==0){
+            examenMalo = new FuncionTriangulo("MALO", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaExamen.addFigura("MALO",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            examenMalo = new FuncionTrapecio("MALO", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaExamen.addFigura("MALO",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaExamen.addFigura("MALO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaExamen.addFigura("MALO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Examen","REGULAR");
+        } catch(Exception e){}
+        Funcion examenRegular;
+        if(numeros.get(0)==0){
+            examenRegular = new FuncionTriangulo("REGULAR", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaExamen.addFigura("REGULAR",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            examenRegular = new FuncionTrapecio("REGULAR", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaExamen.addFigura("REGULAR",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaExamen.addFigura("REGULAR",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaExamen.addFigura("REGULAR",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Examen","BUENO");
+        } catch(Exception e){}
+        Funcion examenBueno;
+        if(numeros.get(0)==0){
+            examenBueno = new FuncionTriangulo("BUENO", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaExamen.addFigura("BUENO",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            examenBueno = new FuncionTrapecio("BUENO", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaExamen.addFigura("BUENO",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaExamen.addFigura("BUENO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaExamen.addFigura("BUENO",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+           
             graficaExamen.setPreferredSize(new Dimension(540, 280));
         JInternalFrame jIExamen = new JInternalFrame("Examen", true, false,false,true);
             jIExamen.add(graficaExamen);
@@ -129,12 +318,46 @@ public class SEDifusoV2 extends JFrame{
         variablesDifusas.add(examen);
         //__________________________________________
         //________ PROYECTO ________________________
-        Funcion proyectoNoFuncional = new FuncionTrapecio("NOFUNCIONAL", -999, 0, 50, 65);
-        Funcion proyectoFucional = new FuncionTrapecio("FUNCIONAL", 60, 75, 100, 999);
-        
         Plano graficaProyecto = new Plano();
-            graficaProyecto.addFigura("NO_FUNCIONAL",new Integer[]{0,0,50,65});            
-            graficaProyecto.addFigura("FUNCIONAL",new Integer[]{60,75,100,100});
+        
+        try {
+            numeros = a.obtenerDatos("Proyecto","NOFUNCIONAL");
+        } catch(Exception e){}
+        Funcion proyectoNoFuncional;
+        if(numeros.get(0)==0){
+            proyectoNoFuncional = new FuncionTriangulo("NOFUNCIONAL", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaProyecto.addFigura("NOFUNCIONAL",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            proyectoNoFuncional = new FuncionTrapecio("NOFUNCIONAL", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaProyecto.addFigura("NOFUNCIONAL",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaProyecto.addFigura("NOFUNCIONAL",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaProyecto.addFigura("NOFUNCIONAL",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Proyecto","FUNCIONAL");
+        } catch(Exception e){}
+        Funcion proyectoFucional;
+        if(numeros.get(0)==0){
+            proyectoFucional = new FuncionTriangulo("FUNCIONAL", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaProyecto.addFigura("FUNCIONAL",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            proyectoFucional = new FuncionTrapecio("FUNCIONAL", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaProyecto.addFigura("FUNCIONAL",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaProyecto.addFigura("FUNCIONAL",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaProyecto.addFigura("FUNCIONAL",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
             graficaProyecto.setPreferredSize(new Dimension(540, 280));
         JInternalFrame jIProyecto = new JInternalFrame("Proyecto", true, false,false,true);
             jIProyecto.add(graficaProyecto);
@@ -149,16 +372,80 @@ public class SEDifusoV2 extends JFrame{
         variablesDifusas.add(proyecto);
         //__________________________________________
         //_____________ APROBACION _________________
-        aprobacionNoAprueba = new FuncionTrapecio("NOAPRUEBA", -999, 0, 30, 45);
-        aprobacionCasiAprueba = new FuncionTriangulo("CASIAPRUEBA", 35, 50, 70);
-        aprobacionAprueba = new FuncionTriangulo("APRUEBA", 65, 75, 80);
-        aprobacionApruebaExcelente = new FuncionTrapecio("APRUEBAEXCELENTE", 75, 85, 100, 999);
-        
         graficaAprobacion = new Plano();
-            graficaAprobacion.addFigura("NO_APRUEBA",new Integer[]{0,0,30,45});
-            graficaAprobacion.addFigura("CASI_APRUEBA",new Integer[]{35,50,70});
-            graficaAprobacion.addFigura("APRUEBA",new Integer[]{65,75,80});
-            graficaAprobacion.addFigura("APRUABE EXCELENTE",new Integer[]{75,85,100,100});            
+        
+        try {
+            numeros = a.obtenerDatos("Aprobacion","NOAPRUEBA");
+        } catch(Exception e){}
+        if(numeros.get(0)==0){
+            aprobacionNoAprueba = new FuncionTriangulo("NOAPRUEBA", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaAprobacion.addFigura("NOAPRUEBA",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            aprobacionNoAprueba = new FuncionTrapecio("NOAPRUEBA", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaAprobacion.addFigura("NOAPRUEBA",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaAprobacion.addFigura("NOAPRUEBA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaAprobacion.addFigura("NOAPRUEBA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Aprobacion","CASIAPRUEBA");
+        } catch(Exception e){}
+        if(numeros.get(0)==0){
+            aprobacionCasiAprueba = new FuncionTriangulo("CASIAPRUEBA", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaAprobacion.addFigura("CASIAPRUEBA",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            aprobacionCasiAprueba = new FuncionTrapecio("CASIAPRUEBA", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaAprobacion.addFigura("CASIAPRUEBA",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaAprobacion.addFigura("CASIAPRUEBA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaAprobacion.addFigura("CASIAPRUEBA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Aprobacion","APRUEBA");
+        } catch(Exception e){}
+        if(numeros.get(0)==0){
+            aprobacionAprueba = new FuncionTriangulo("APRUEBA", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaAprobacion.addFigura("APRUEBA",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            aprobacionAprueba = new FuncionTrapecio("APRUEBA", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaAprobacion.addFigura("APRUEBA",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaAprobacion.addFigura("APRUEBA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaAprobacion.addFigura("APRUEBA",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
+        try {
+            numeros = a.obtenerDatos("Aprobacion","APRUEBAEXCELENTE");
+        } catch(Exception e){}
+        if(numeros.get(0)==0){
+            aprobacionApruebaExcelente = new FuncionTriangulo("APRUEBAEXCELENTE", numeros.get(2), numeros.get(3), numeros.get(4));
+            graficaAprobacion.addFigura("APRUEBAEXCELENTE",new Integer[]{numeros.get(2), numeros.get(3), numeros.get(4)});
+        } else {
+            aprobacionApruebaExcelente = new FuncionTrapecio("APRUEBAEXCELENTE", numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4));
+            if(numeros.get(1)==-999){
+                graficaAprobacion.addFigura("APRUEBAEXCELENTE",new Integer[]{0, numeros.get(2), numeros.get(3), numeros.get(4)});
+            } else if(numeros.get(4)==999){
+                graficaAprobacion.addFigura("APRUEBAEXCELENTE",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), 100});
+            } else{
+                graficaAprobacion.addFigura("APRUEBAEXCELENTE",new Integer[]{numeros.get(1), numeros.get(2), numeros.get(3), numeros.get(4)});
+            }
+        }
+        numeros.clear();
+        
             graficaAprobacion.setPreferredSize(new Dimension(540, 280));
             jIAprobacion = new JInternalFrame("Aprobacion", true, false,false,true);
             jIAprobacion.add(graficaAprobacion);
