@@ -161,7 +161,7 @@ public class SEDifusoV2 extends JFrame{
         }
         numeros.clear();
         
-            graficaEntusiasmo.setPreferredSize(new Dimension(540, 280));
+            graficaEntusiasmo.setPreferredSize(new Dimension(540, 300));
             //Cortes
             
             
@@ -237,7 +237,7 @@ public class SEDifusoV2 extends JFrame{
         }
         numeros.clear();
         
-        graficaNotas.setPreferredSize(new Dimension(540, 280));
+        graficaNotas.setPreferredSize(new Dimension(540, 300));
         JInternalFrame jINotas = new JInternalFrame("Notas", true, false,false,true);
             jINotas.add(graficaNotas);
             jINotas.setLocation(540, 0);
@@ -309,11 +309,11 @@ public class SEDifusoV2 extends JFrame{
         }
         numeros.clear();
            
-            graficaExamen.setPreferredSize(new Dimension(540, 280));
+            graficaExamen.setPreferredSize(new Dimension(540, 300));
         JInternalFrame jIExamen = new JInternalFrame("Examen", true, false,false,true);
             jIExamen.add(graficaExamen);
             jIExamen.pack();
-            jIExamen.setLocation(0, 320);
+            jIExamen.setLocation(0, 330);
         desktop.add(jIExamen);
             jIExamen.setVisible(true);
         
@@ -362,11 +362,11 @@ public class SEDifusoV2 extends JFrame{
         }
         numeros.clear();
         
-            graficaProyecto.setPreferredSize(new Dimension(540, 280));
+            graficaProyecto.setPreferredSize(new Dimension(540, 300));
         JInternalFrame jIProyecto = new JInternalFrame("Proyecto", true, false,false,true);
             jIProyecto.add(graficaProyecto);
             jIProyecto.pack();
-            jIProyecto.setLocation(540, 320);
+            jIProyecto.setLocation(540, 330);
         desktop.add(jIProyecto);
             jIProyecto.setVisible(true);
         
@@ -450,11 +450,11 @@ public class SEDifusoV2 extends JFrame{
         }
         numeros.clear();
         
-            graficaAprobacion.setPreferredSize(new Dimension(540, 280));
+            graficaAprobacion.setPreferredSize(new Dimension(540, 300));
             jIAprobacion = new JInternalFrame("Aprobacion", true, false,false,true);
             jIAprobacion.add(graficaAprobacion);
             jIAprobacion.pack();
-            jIAprobacion.setLocation(300, 300);
+            jIAprobacion.setLocation(300, 330);
         desktop.add(jIAprobacion);
             jIAprobacion.setVisible(false);
         
