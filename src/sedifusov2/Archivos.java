@@ -102,25 +102,165 @@ public class Archivos {
         archivo.close();
     }
     
-    public static void main(String args[]) throws IOException {
-        //0 Triangular
-        //1 Trapezoidal
-        //2 TrapezoidalAIzq
-        //3 TrapezoidalADer
-
-        //escribirFuncion("Notas", "MALAS", 2, -999, 0, 20, 35);
-        //escribirFuncion("Notas", "REGULARES", 0, 0, 30, 50, 65);
-        //escribirFuncion("Notas", "BUENAS", 3, 60, 70, 100, 999);
+    public void traslape_entusiasmo(int porcentaje) throws IOException {
+        int nada2,poco2,medio2,suficiente2,mucho2, traslape2,nuevo_nada, nuevo_poco, nuevo_poco2, nuevo_medio, nuevo_medio2, nuevo_suficiente, nuevo_suficiente2, nuevo_mucho;
+        ArrayList<Integer> nada = new ArrayList();
+        nada = obtenerDatos("Entusiasmo","NADA");
+        ArrayList<Integer> poco = new ArrayList();
+        poco = obtenerDatos("Entusiasmo","POCO");
+        ArrayList<Integer> medio = new ArrayList();
+        medio = obtenerDatos("Entusiasmo","MEDIO");
+        ArrayList<Integer> suficiente = new ArrayList();
+        suficiente = obtenerDatos("Entusiasmo","SUFICIENTE");
+        ArrayList<Integer> mucho = new ArrayList();
+        mucho = obtenerDatos("Entusiasmo","MUCHO");
         
-        //escribirFuncion("Proyecto", "NOFUNCIONAL", 2, -999, 0, 50, 65);
-        //escribirFuncion("Proyecto", "FUNCIONAL", 3, 60, 75, 100, 999);
+        if(nada.get(0)==0){
+            nada2 = nada.get(4)-nada.get(2);
+            traslape2 = nada2*porcentaje/100;
+            nuevo_nada = nada.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "NADA", nada.get(0), nada.get(1), nada.get(2), nada.get(3), nuevo_nada);
+        } else if(nada.get(0)==1){
+            nada2 = nada.get(4)-nada.get(1);
+            traslape2 = nada2*porcentaje/100;
+            nuevo_nada = nada.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "NADA", nada.get(0), nada.get(1), nada.get(2), nada.get(3), nuevo_nada);
+        } else if(nada.get(0)==2){
+            nada2 = nada.get(4)-nada.get(2);
+            traslape2 = nada2*porcentaje/100;
+            nuevo_nada = nada.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "NADA", nada.get(0), nada.get(1), nada.get(2), nada.get(3), nuevo_nada);
+        } else if(nada.get(0)==3){
+            nada2 = nada.get(3)-nada.get(1);
+            traslape2 = nada2*porcentaje/100;
+            nuevo_nada = nada.get(3)+traslape2;
+            if(!(nuevo_nada<100)){
+                nuevo_nada = 100;
+            }
+            modificarDatos("Entusiasmo", "NADA", nada.get(0), nada.get(1), nada.get(2), nuevo_nada, nada.get(4));
+        }
         
-        //escribirFuncion("Aprobacion", "NOAPRUEBA", 2, -999, 0, 30, 45);
-        //escribirFuncion("Aprobacion", "CASIAPRUEBA", 0, 0, 35, 50, 70);
-        //escribirFuncion("Aprobacion", "APRUEBA", 0, 0, 65, 75, 80);
-        //escribirFuncion("Aprobacion", "APRUEBAEXCELENTE", 3, 75, 85, 100, 999);
+        if(poco.get(0)==0){
+            poco2 = poco.get(4)-poco.get(2);
+            traslape2 = poco2*porcentaje/100;
+            nuevo_poco = poco.get(2)-traslape2;
+            nuevo_poco2 = poco.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "POCO", poco.get(0), poco.get(1), nuevo_poco, poco.get(3), nuevo_poco2);
+        } else if(poco.get(0)==1){
+            poco2 = poco.get(4)-poco.get(1);
+            traslape2 = poco2*porcentaje/100;
+            nuevo_poco = poco.get(1)-traslape2;
+            nuevo_poco2 = poco.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "POCO", poco.get(0), nuevo_poco, poco.get(2), poco.get(3), nuevo_poco2);
+        } else if(poco.get(0)==2){
+            poco2 = poco.get(4)-poco.get(2);
+            traslape2 = poco2*porcentaje/100;
+            nuevo_poco = poco.get(1)-traslape2;
+            nuevo_poco2 = poco.get(4)+traslape2;
+            if(!(nuevo_poco>0)){
+                nuevo_poco = 0;
+            }
+            modificarDatos("Entusiasmo", "POCO", poco.get(0), poco.get(1), nuevo_poco, poco.get(3), nuevo_poco2);
+        } else if(poco.get(0)==3){
+            poco2 = poco.get(3)-poco.get(1);
+            traslape2 = poco2*porcentaje/100;
+            nuevo_poco = poco.get(1)-traslape2;
+            nuevo_poco2 = poco.get(4)+traslape2;
+            if(!(nuevo_poco2<100)){
+                nuevo_poco2 = 100;
+            }
+            modificarDatos("Entusiasmo", "POCO", poco.get(0), nuevo_poco, poco.get(2),nuevo_poco2, poco.get(4));
+        }
         
+        if(medio.get(0)==0){
+            medio2 = medio.get(4)-medio.get(2);
+            traslape2 = medio2*porcentaje/100;
+            nuevo_medio = medio.get(2)-traslape2;
+            nuevo_medio2 = medio.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "MEDIO", medio.get(0), medio.get(1), nuevo_medio, medio.get(3), nuevo_medio2);
+        } else if(medio.get(0)==1){
+            medio2 = medio.get(4)-medio.get(1);
+            traslape2 = medio2*porcentaje/100;
+            nuevo_medio = medio.get(1)-traslape2;
+            nuevo_medio2 = medio.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "MEDIO", medio.get(0), nuevo_medio, medio.get(2), medio.get(3), nuevo_medio2);
+        } else if(medio.get(0)==2){
+            medio2 = medio.get(4)-medio.get(2);
+            traslape2 = medio2*porcentaje/100;
+            nuevo_medio = medio.get(1)-traslape2;
+            nuevo_medio2 = medio.get(4)+traslape2;
+            if(!(nuevo_medio>0)){
+                nuevo_medio = 0;
+            }
+            modificarDatos("Entusiasmo", "MEDIO", medio.get(0), medio.get(1), nuevo_medio, medio.get(3), nuevo_medio2);
+        } else if(medio.get(0)==3){
+            medio2 = medio.get(3)-medio.get(1);
+            traslape2 = medio2*porcentaje/100;
+            nuevo_medio = medio.get(1)-traslape2;
+            nuevo_medio2 = medio.get(4)+traslape2;
+            if(!(nuevo_medio2<100)){
+                nuevo_medio2 = 100;
+            }
+            modificarDatos("Entusiasmo", "MEDIO", medio.get(0), nuevo_medio, medio.get(2),nuevo_medio2, medio.get(4));
+        }
         
+        if(suficiente.get(0)==0){
+            suficiente2 = suficiente.get(4)-suficiente.get(2);
+            traslape2 = suficiente2*porcentaje/100;
+            nuevo_suficiente = suficiente.get(2)-traslape2;
+            nuevo_suficiente2 = suficiente.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "SUFICIENTE", suficiente.get(0), suficiente.get(1), nuevo_suficiente, suficiente.get(3), nuevo_suficiente2);
+        } else if(suficiente.get(0)==1){
+            suficiente2 = suficiente.get(4)-suficiente.get(1);
+            traslape2 = suficiente2*porcentaje/100;
+            nuevo_suficiente = suficiente.get(1)-traslape2;
+            nuevo_suficiente2 = suficiente.get(4)+traslape2;
+            modificarDatos("Entusiasmo", "SUFICIENTE", suficiente.get(0), nuevo_suficiente, suficiente.get(2), suficiente.get(3), nuevo_suficiente2);
+        } else if(suficiente.get(0)==2){
+            suficiente2 = suficiente.get(4)-suficiente.get(2);
+            traslape2 = suficiente2*porcentaje/100;
+            nuevo_suficiente = suficiente.get(1)-traslape2;
+            nuevo_suficiente2 = suficiente.get(4)+traslape2;
+            if(!(nuevo_suficiente>0)){
+                nuevo_suficiente = 0;
+            }
+            modificarDatos("Entusiasmo", "SUFICIENTE", suficiente.get(0), suficiente.get(1), nuevo_suficiente, suficiente.get(3), nuevo_suficiente2);
+        } else if(suficiente.get(0)==3){
+            suficiente2 = suficiente.get(3)-suficiente.get(1);
+            traslape2 = suficiente2*porcentaje/100;
+            nuevo_suficiente = suficiente.get(1)-traslape2;
+            nuevo_suficiente2 = suficiente.get(4)+traslape2;
+            if(!(nuevo_suficiente2<100)){
+                nuevo_suficiente2 = 100;
+            }
+            modificarDatos("Entusiasmo", "SUFICIENTE", suficiente.get(0), nuevo_suficiente, suficiente.get(2),nuevo_suficiente2, suficiente.get(4));
+        }
+        
+        if(mucho.get(0)==0){
+            mucho2 = mucho.get(4)-mucho.get(2);
+            traslape2 = mucho2*porcentaje/100;
+            nuevo_mucho = mucho.get(2)-traslape2;
+            modificarDatos("Entusiasmo", "MUCHO", mucho.get(0), mucho.get(1), nuevo_mucho, mucho.get(3),  mucho.get(4));
+        } else if(mucho.get(0)==1){
+            mucho2 = mucho.get(4)-mucho.get(1);
+            traslape2 = mucho2*porcentaje/100;
+            nuevo_mucho = mucho.get(1)-traslape2;
+            modificarDatos("Entusiasmo", "MUCHO", mucho.get(0), nuevo_mucho, mucho.get(2), mucho.get(3), mucho.get(4));
+        } else if(mucho.get(0)==2){
+            mucho2 = mucho.get(4)-mucho.get(2);
+            traslape2 = mucho2*porcentaje/100;
+            nuevo_mucho = mucho.get(1)-traslape2;
+            if(!(nuevo_mucho>0)){
+                nuevo_mucho = 0;
+            }
+            modificarDatos("Entusiasmo", "MUCHO", mucho.get(0), mucho.get(1), nuevo_mucho, mucho.get(3), mucho.get(4));
+        } else if(mucho.get(0)==3){
+            mucho2 = mucho.get(3)-mucho.get(1);
+            traslape2 = mucho2*porcentaje/100;
+            nuevo_mucho = mucho.get(1)-traslape2;
+            modificarDatos("Entusiasmo", "MUCHO", mucho.get(0), nuevo_mucho, mucho.get(2),mucho.get(3), mucho.get(4));
+        }
         
     }
+
 }
