@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -479,7 +481,13 @@ public class SEDifusoV2 extends JFrame{
             System.out.println("Pesor R"+i+": "+r.getPeso());
         }
         
-        
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                dispose();
+                InterfazPrincipal ip=new InterfazPrincipal();
+                ip.setVisible(true);
+            }
+        });
         revalidate();
     }
     

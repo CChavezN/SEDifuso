@@ -120,8 +120,9 @@ public class ModificarFuncion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_continuarActionPerformed
 
     private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
+        InterfazPrincipal ip = new InterfazPrincipal();
+        ip.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn_atrasActionPerformed
 
     /**
