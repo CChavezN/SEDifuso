@@ -153,7 +153,9 @@ public class Traslape extends javax.swing.JFrame {
 
     private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        ModificarFuncion mf = new ModificarFuncion();
+        mf.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn_atrasActionPerformed
 
     /**
