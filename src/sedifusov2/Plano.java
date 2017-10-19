@@ -50,7 +50,7 @@ public class Plano extends JPanel{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
         RenderingHints.VALUE_ANTIALIAS_ON);  
         setEjes(g2d);
-        paintCuadricula(g2d);
+        //paintCuadricula(g2d);
         setRango(g2d);   
         
         for (int i = 0; i < figuras.size(); i++) { 
