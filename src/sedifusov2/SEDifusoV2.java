@@ -636,6 +636,7 @@ public class SEDifusoV2 extends JFrame{
     }
     
     
+    
     public void getPuntosDeCorte(){
         for (int i = 0; i < reglas.size(); i++) {
             Regla regla = reglas.get(i);
