@@ -134,8 +134,12 @@ public class Traslape extends javax.swing.JFrame {
         if(opciones.getSelectedIndex()==0){
             Archivos a = new Archivos();
             try {
-                a.traslape_entusiasmo(Integer.parseInt(t.getText()));
-                JOptionPane.showMessageDialog(null, "Traslape realizado");
+                if(t.getText().equals("")){
+                    JOptionPane.showMessageDialog(null, "Campo vacio");
+                }else {
+                    a.traslape_entusiasmo(Integer.parseInt(t.getText()));
+                    JOptionPane.showMessageDialog(null, "Traslape realizado");
+                }
             } catch (IOException ex) {
                 Logger.getLogger(Traslape.class.getName()).log(Level.SEVERE, null, ex);
             }
