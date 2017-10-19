@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -48,7 +50,7 @@ public class SEDifusoV2 extends JFrame{
     JDesktopPane desktop;
     JInternalFrame jIAprobacion;
     Plano graficaAprobacion;
-    public SEDifusoV2() {
+    public SEDifusoV2() throws IOException {
         super("Sistema Experto Difuso");
         initGUI();                        
         reglas = new ArrayList<>();
@@ -458,7 +460,8 @@ public class SEDifusoV2 extends JFrame{
             aprobacionNoAprueba,aprobacionCasiAprueba,aprobacionAprueba,aprobacionApruebaExcelente
         });
         //____________________________________________Comienza la inferencia
-        generarReglas();
+        llenar_indice();
+        generarReglas(1,2);
         difusificar();
         getPuntosDeCorte();
         desdifusificar();
@@ -505,9 +508,61 @@ public class SEDifusoV2 extends JFrame{
             System.out.println("----------------");
         }        
     }
+    String [] ind, subconjuntos;
+    int cont=-1;
     
-    
-    private void generarReglas(){
+        public long obtener_treg(String nombre_archi) throws IOException
+    {
+        RandomAccessFile archivo=new RandomAccessFile("bh/"+nombre_archi, "r");
+        long resultado=0;
+        
+        for(int i=0; i<15; i++)
+        {
+            archivo.readChar();
+        }
+        archivo.readInt();
+        archivo.readInt();
+        for(int i=0; i<20; i++)
+        {
+            archivo.readChar();
+        }
+        resultado=archivo.getFilePointer();
+        archivo.close();
+        return resultado;
+    }
+    public void llenar_indice() throws FileNotFoundException, IOException
+    {
+                RandomAccessFile indice=new RandomAccessFile("bh/indice", "r");
+                for(int i=0; i<10;i++)
+                {
+                    indice.readChar();
+                }
+                long treg=indice.getFilePointer();
+                int nreg=(int) (indice.length()/treg);
+                System.out.println("Numero de registros del indice :"+nreg);
+                this.ind=new String[nreg];
+                this.subconjuntos= new String[nreg];
+                String index;
+                indice.seek(0);
+                char temp;
+                int c=0;
+                while(indice.getFilePointer()<indice.length())
+                {
+                    index="";
+                    for(int i=0; i<10;i++)
+                    {
+                        temp=indice.readChar();
+                        if(temp!=0)
+                        {
+                        index+=temp;
+                        }
+                    }
+                    this.ind[c]=index;
+                    c++;
+                }
+                indice.close();
+    }
+    private void generarReglas(int min, int max) throws IOException{
          cont++;
         StringBuffer buffer=null;
         RandomAccessFile archivo=new RandomAccessFile("bh/"+ind[cont], "rw");
@@ -532,19 +587,44 @@ public class SEDifusoV2 extends JFrame{
             if(min==0 && max==0)
             {
                 //Debe hacer la pregunta para llenar 
-                String pregunta="Si en ";
+                Regla r=new Regla();
                 for(int i=0; i<ind.length; i++)
                 {
-                    pregunta+=ind[i]+" es "+subconjuntos[i]+" ";
+                    switch(ind[i])
+                    {
+                        case "entusiasmo":
+                            r.setAntecedente(new Premisa(entusiasmo,subconjuntos[i]));
+                            break;
+                            
+                            case "examen":
+                            r.setAntecedente(new Premisa(examen,subconjuntos[i]));
+                            break;
+                            
+                            case "notas":
+                            r.setAntecedente(new Premisa(notas,subconjuntos[i]));
+                            break;
+                            
+                            case "proyecto":
+                            r.setAntecedente(new Premisa(proyecto,subconjuntos[i]));
+                            break;
+                    }
                 }
-                String respuesta=JOptionPane.showInputDialog(pregunta);
-                buffer=new StringBuffer(respuesta);
-                buffer.setLength(20);
-                archivo.writeChars(buffer.toString());
+                String te="";
+                char tm;
+                for(int x=0; x<20;x++)
+                {
+                    tm=archivo.readChar();
+                    if(tm!=0)
+                    {
+                        te+=tm;
+                    }
+                }
+                r.setConsecuente(new Premisa(aprobacion, te));
+                reglas.add(r);
             }
             else
             {
-                llenar_matriz(min, max);
+                generarReglas(min, max);
                 for(int i=0; i<20; i++)
                 {
                     archivo.readChar();
@@ -647,7 +727,7 @@ public class SEDifusoV2 extends JFrame{
     
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new SEDifusoV2();
     }
     
